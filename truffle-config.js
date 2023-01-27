@@ -1,5 +1,9 @@
 module.exports = {
-  
+   // truffle reads from here
+   contracts_directory: "./contracts",
+   contracts_build_directory: "./build/contracts",
+   migrations_directory: "./migrations",
+
   networks: {
     development: {
      host: "127.0.0.1",     // Localhost (default: none)
