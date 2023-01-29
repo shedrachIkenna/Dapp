@@ -11,9 +11,14 @@ contract Faucet {
         funders.push(msg.sender);
     }
 
-    function getAllFunders() external view return(address[] memory){
+    function getAllFunders() public view returns(address[] memory){
         return funders;
     }
 
-
+    function getFundersAtIndex(uint8 index) external view returns(address){
+        address[] memory _funders = getAllFunders();
+        return _funders[index];
+    }
 }
+
+//instance.addFunds({from: accounts[0], values:"2"})
