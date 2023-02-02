@@ -20,9 +20,8 @@ contract Faucet {
     }
 
     function withdraw(uint withdrawAmount) external {
-        if (withdrawAmount < 1000000000000000000){
-            payable(msg.sender).transfer(withdrawAmount);
-        }
+        require(withdrawAmount < 1000000000000000000, "You cannot withdraw more than 0.1 eth");
+        payable(msg.sender).transfer(withdrawAmount);
     }
 
     function getFunderAtIndex(uint8 index) external view returns(address){
@@ -41,7 +40,8 @@ contract Faucet {
 }
 
 // const instance = await Faucet.deployed()
-// instance.addFunds({from: accounts[0], values:"200000000"})
-// instance.addFunds({from: accounts[1], values:"200000000"})
+// instance.addFunds({from: accounts[0], values:"2000000000000000000"})
+// instance.addFunds({from: accounts[1], values:"2000000000000000000"})
+// instance.withdraw("500000000000000000", {from: account[1]})
 // instance.getFunderAtIndex(0)
 // instance.getAllFunders()
