@@ -19,6 +19,12 @@ contract Faucet {
         }
     }
 
+    function withdraw(uint withdrawAmount) external {
+        if (withdrawAmount < 1000000000000000000){
+            payable(msg.sender).transfer(withdrawAmount);
+        }
+    }
+
     function getFunderAtIndex(uint8 index) external view returns(address){
         return lutFunders[index];
     }
