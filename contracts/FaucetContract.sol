@@ -1,25 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract Faucet {
+import "./Owned.sol";
+
+contract Faucet is Owned{
 
     uint public numOfFunders;
-    address public owner;
 
     mapping(address => bool) private funders;
     mapping(uint => address) private lutFunders;
-
-    constructor () {
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner {
-        require(
-            msg.sender == owner,
-            "Only owner can call this function"
-        ); _;
-    }
-   
 
     modifier limitWithdraw (uint withdrawAmount) {
         require(
@@ -39,6 +28,14 @@ contract Faucet {
             lutFunders[index] = funder;
             // numOfFunders++; // Incrementing numOfFunders at the bottom of this block of code means the address of a funder is stored at index[0] before the increment happens 
         }
+    }
+
+    function test1() external onlyOwner{
+        //does something
+    }
+
+    function test2() external onlyOwner{
+        //does something
     }
 
     function withdraw(uint withdrawAmount) external limitWithdraw (withdrawAmount) {
