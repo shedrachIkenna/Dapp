@@ -2,8 +2,9 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import "./Owned.sol";
+import "./Logger.sol";
 
-contract Faucet is Owned{
+contract Faucet is Owned, Logger{
 
     uint public numOfFunders;
 
@@ -18,7 +19,12 @@ contract Faucet is Owned{
         _;
     }
 
+
     receive() external payable {}
+
+    function emitLog() public pure override returns(bytes32){
+        return "Hello World";
+    }
 
     function addFunds() external payable{
         address funder = msg.sender;
